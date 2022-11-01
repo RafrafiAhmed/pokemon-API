@@ -7,7 +7,7 @@ const url =
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// api 1 Get all names.
+//  Get all names/ get image type spawn_chance.
 app.get("/", async (req, res) => {
   try {
     const { data } = await axios.get(url);
@@ -33,6 +33,7 @@ app.get("/", async (req, res) => {
   }
 });
 
+//[GET] /weak/?typeName -> returns all pokemons that are week to those element type
 app.get("/weak/", async (req, res) => {
   try {
     const typeName = req.query.typeName;
@@ -51,6 +52,8 @@ app.get("/weak/", async (req, res) => {
   }
 });
 
+//[GET] /strong/?typeName -> returns all pokemons that are strong to those element type
+
 app.get("/strong/", async (req, res) => {
   try {
     const typeName = req.query.typeName;
@@ -68,6 +71,8 @@ app.get("/strong/", async (req, res) => {
     return res.sendStatus(500).send("error");
   }
 });
+
+//[POST] /figth/ BODY:{myPokemon:string, enemyPokemon:string} -> returns win / draw / lose
 
 app.post("/fight", async (req, res) => {
   const { myPokemon, enemyPokemon } = req.body;
