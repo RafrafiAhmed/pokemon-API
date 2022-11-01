@@ -7,7 +7,7 @@ const url =
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-//  Get all names/ get image type spawn_chance.
+//  Get all names/ Get image type spawn_chance.
 app.get("/", async (req, res) => {
   try {
     const { data } = await axios.get(url);
@@ -112,8 +112,6 @@ app.post("/fight", async (req, res) => {
     return res.send(error);
   }
 });
-
-// api  2 Get image, element type, spawn chance.a
 
 app.listen(3000, () => {
   console.log("server is connected!");
